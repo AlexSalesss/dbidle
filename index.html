@@ -234,7 +234,7 @@ const r=await(await fetch(B+"?limit=200")).json();
 const it=(r.items||r).filter(x=>!x.deletedAt&&!BL.test(x.name));
 if(it.length<5)return 0;
 
-HD=["Raça","Gênero","Afiliação","Ki máx.","Estreia","Nº transf.","Deus?"];NOTE="↑ = o misterioso tem mais (ki, transformações) ou estreou depois";
+HD=["Raça","Gênero","Afiliação","Ki máx.","Estreia","Nº transf.","Deus"];NOTE="↑ = o misterioso tem mais (ki, transformações) ou estreou depois";
 const [ds,er]=await Promise.all([Promise.all(it.map(x=>fetch(B+"/"+x.id).then(r=>r.json()).catch(()=>null))),Promise.all(it.map(x=>era(x.name)))]);
 C=it.map((x,i)=>{const d=ds[i],tr=((d&&d.transformations)||[]).filter(q=>!BT.test(q.name));
 const isG=x.race=="God"||x.race=="Angel"||x.affiliation=="God",can=tr.some(q=>/god|blue|ultra|ros[eé]|divine|instinct|ssb/i.test(q.name));
